@@ -40,12 +40,12 @@ def get_todos():
     return jsonify(result)
 
 #get one route 
-@app.route("/<id>", methods=["GET"])
+@app.route("/todo/<id>", methods=["GET"])
 def get_todo(id):
     todo = Todo.query.get(id)
     
-    result = todo_schema.get(todo)
-    return jsonify(result)
+    
+    return todo_schema.jsonify(todo)
 
 
 #Post route 
