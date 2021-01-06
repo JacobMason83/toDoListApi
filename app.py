@@ -30,9 +30,6 @@ class TodoSchema(ma.Schema):
 todo_schema = TodoSchema()
 todos_schema = TodoSchema(many=True)
 
-@app.route("/", methods=["GET"])
-def home():
-    return "<h1> Todo Flask Api </h1>"
 
 # get all route 
 @app.route("/todos", methods=["GET"])
@@ -40,6 +37,14 @@ def get_todos():
     all_todos = Todo.query.all()
     result = todos_schema.dump(all_todos)
     
+    return jsonify(result)
+
+#get one route 
+@app.route("/<id>", methods=["GET"])
+def get_todo(id):
+    todo = Todo.query.get(id)
+    
+    result = todo_schema.get(todo)
     return jsonify(result)
 
 
@@ -58,8 +63,17 @@ def add_todo():
     
     return todo_schema.jsonify(todo)
 #Todo list 
-# get
+
 #Patch/Put
+@app.route("/todo/<id>", methods=['PATCH'])
+def update_todo(id):
+    todo = Todo.query.get(id)
+    
+    new_done = request.json['done']
+    todo.done = new_done 
+    db.session.commit()
+    
+    return todo_schema.jsonify(todo)
 #delete
         
 if __name__ == "__main__":
