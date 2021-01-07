@@ -4,7 +4,7 @@ from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_heroku import Heroku
 import os
-from environs Env
+from environs import Env
 
 app = Flask(__name__)
 CORS(app)
