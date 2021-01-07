@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify # imported it into your file
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
+from flask_heroku import Heroku
 import os
 
 app = Flask(__name__)
+CORS(app)
+heroku = Heroku(app)
 
 basedir = os.path.abspath(os.path.dirname(__file__)) 
 DATABASE_URL = os.environ.get('DATABASE_URL')
