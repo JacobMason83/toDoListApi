@@ -36,6 +36,9 @@ class TodoSchema(ma.Schema):
 todo_schema = TodoSchema()
 todos_schema = TodoSchema(many=True)
 
+@app.route('/')
+def home():
+    return "<h1> Home is where you are!!!</h1>"
 
 # get all route 
 @app.route("/todos", methods=["GET"])
