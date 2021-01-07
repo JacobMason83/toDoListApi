@@ -12,6 +12,7 @@ gunicorn = "*"
 flask-cors = "*"
 flask-heroku = "*"
 psycopg2 = "*"
+environs = "*"
 
 [dev-packages]
 
